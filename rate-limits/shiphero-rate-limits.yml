@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: ShipHero
+providerId: shiphero
+created: '2026-06-12'
+modified: '2026-06-12'
+
+notes: >
+  ShipHero uses a credit-based complexity system for its GraphQL API.
+  Each operation has a calculated complexity cost. Credits are restored
+  continuously at a rate of 60 per second. The maximum single operation
+  complexity is 4,004 credits. Users can analyze query complexity before
+  execution by passing analyze: true in the request without consuming credits.
+  Credits are charged only for the data actually returned, not the maximum
+  requested.
+
+retryAfter: Retry-After
+throttled: 429
+
+limits:
+
+  - scope: account
+    metric: credits
+    limit: 4004
+    timeFrame: instantaneous
+    description: >
+      Maximum credits available per account at any time. Credits restore at
+      60 per second. No single operation can exceed 4,004 credits.
+
+  - scope: account
+    metric: credits_restore_rate
+    limit: 60
+    timeFrame: second
+    description: >
+      Rate at which credits are restored to the account bucket.
+      Continuous restoration; 60 credits per second.
+
+  - scope: account
+    metric: requests
+    limit: 7000
+    timeFrame: 5 minutes
+    description: >
+      Hard cap of 7,000 maximum requests in any rolling 5-minute window.
+      ShipHero strictly enforces this policy.
+
+  - scope: webhook
+    metric: timeout
+    limit: 10
+    timeFrame: second
+    description: >
+      Standard webhook endpoint timeout is 10 seconds. The Generate Label
+      webhook allows 20 seconds. Endpoints receive up to 5 retries per trigger.
+
+  - scope: webhook
+    metric: retries
+    limit: 5
+    timeFrame: per trigger
+    description: >
+      Failed webhook deliveries are retried up to 5 times per trigger event.
+      Webhooks are automatically disabled if failure rates persist (UNHEALTHY status).
+
+  - scope: data_export
+    metric: exports
+    limit: 4
+    timeFrame: day
+    description: >
+      Bulk data exports are limited to four times daily. This is a paid add-on
+      feature not included in base plans.

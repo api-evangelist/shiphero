@@ -1,0 +1,94 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: ShipHero
+providerId: shiphero
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+type: paid
+
+plans:
+
+  - name: Brand
+    description: >
+      Core warehouse management plan for direct-to-consumer brands including
+      order fulfillment, inventory management, shipping operations, warehouse
+      routing, lot and expiration tracking, shipping rate shopper, and automation
+      rules. Includes five user seats and up to 10 store connections.
+    type: paid
+    url: https://shiphero.com/pricing/
+    entries:
+      - name: Monthly Fee
+        type: metered
+        metric: per month
+        limit: 1
+        price: 1850.00
+        unit: USD
+      - name: User Seats
+        type: quota
+        metric: users
+        limit: 5
+      - name: Store Connections
+        type: quota
+        metric: stores
+        limit: 10
+      - name: Data Exports
+        type: boolean
+        description: Paid add-on; bulk data export up to four times daily
+        value: false
+
+  - name: 3PL
+    description: >
+      Plan designed for third-party logistics providers managing multiple
+      client warehouses and billing. Includes all Brand plan features plus
+      3PL-specific billing and client management capabilities.
+    type: paid
+    url: https://shiphero.com/pricing/
+    entries:
+      - name: Monthly Fee
+        type: metered
+        metric: per month
+        limit: 1
+        price: 1995.00
+        unit: USD
+      - name: User Seats
+        type: quota
+        metric: users
+        limit: 5
+      - name: Data Exports
+        type: boolean
+        description: Paid add-on; bulk data export up to four times daily
+        value: false
+
+  - name: Enterprise+
+    description: >
+      Full-featured enterprise plan including all Brand and 3PL features plus
+      exclusive access to dynamic slotting, a dedicated account manager, and
+      advanced analytics. Suitable for high-volume fulfillment operations.
+    type: enterprise
+    url: https://shiphero.com/pricing/
+    entries:
+      - name: Monthly Fee
+        type: metered
+        metric: per month
+        limit: 1
+        price: 2750.00
+        unit: USD
+      - name: User Seats
+        type: quota
+        metric: users
+        limit: 5
+      - name: Store Connections
+        type: quota
+        metric: stores
+        limit: 10
+      - name: Dynamic Slotting
+        type: boolean
+        value: true
+      - name: Dedicated Account Manager
+        type: boolean
+        value: true
+      - name: Data Exports
+        type: boolean
+        description: Paid add-on; bulk data export up to four times daily
+        value: true

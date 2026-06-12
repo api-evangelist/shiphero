@@ -1,0 +1,77 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: ShipHero
+providerId: shiphero
+created: '2026-06-12'
+modified: '2026-06-12'
+
+billingModel: subscription
+description: >
+  ShipHero uses a flat monthly subscription billing model with three paid tiers
+  (Brand at $1,850/mo, 3PL at $1,995/mo, Enterprise+ at $2,750/mo). There is
+  no free tier or usage-based API billing. The platform's GraphQL API is included
+  in the subscription with credit-based rate limiting. Data exports are an
+  optional paid add-on. No per-request or per-call charges apply to the API.
+
+focusColumns:
+  - ProviderName: ShipHero
+  - ServiceName: Warehouse Management System
+  - ServiceCategory: Logistics Software
+  - ChargeType: Usage
+  - BillingCurrency: USD
+  - BillingPeriod: Monthly
+  - PricingModel: Flat Rate Subscription
+
+meters:
+
+  - name: Monthly Subscription Fee
+    unit: month
+    description: >
+      Fixed monthly fee based on selected plan tier. Brand: $1,850/mo,
+      3PL: $1,995/mo, Enterprise+: $2,750/mo.
+    tiers:
+      - name: Brand
+        price: 1850.00
+        unit: USD per month
+      - name: 3PL
+        price: 1995.00
+        unit: USD per month
+      - name: Enterprise+
+        price: 2750.00
+        unit: USD per month
+
+  - name: Data Export Add-On
+    unit: feature
+    description: >
+      Optional paid add-on for bulk data exports, allowing up to four
+      exports per day. Pricing negotiated separately; included by default
+      in Enterprise+ plan.
+
+  - name: API Credits
+    unit: credits
+    description: >
+      Credit-based metering for GraphQL API calls included in subscription.
+      4,004 credits per account with 60 credits restored per second. No
+      additional charge per credit; governed by rate limits only.
+
+principles:
+
+  - name: Visibility
+    description: >
+      Subscription costs are fixed and predictable by tier. API usage can
+      be analyzed before execution using the analyze parameter on GraphQL
+      operations, allowing teams to understand complexity costs without
+      consuming credits.
+
+  - name: Optimization
+    description: >
+      GraphQL allows precise field selection to minimize query complexity
+      costs. Credit-efficient queries reduce the risk of hitting rate limits.
+      Teams should use the analyze feature to profile expensive queries and
+      restructure them to lower complexity scores before production deployment.
+
+  - name: Accountability
+    description: >
+      All API access is tied to user credentials with JWT tokens. Access
+      and refresh tokens can be managed through the ShipHero dashboard,
+      enabling per-user attribution of API usage within an account.
