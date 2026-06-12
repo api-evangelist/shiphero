@@ -1,0 +1,26 @@
+{
+  "name": "ShipHero Blog",
+  "description": "Official ShipHero blog covering warehouse management, fulfillment, 3PL operations, and eCommerce logistics.",
+  "url": "https://shiphero.com/blog",
+  "rssUrl": null,
+  "rssDiscovered": false,
+  "lastChecked": "2026-06-12",
+  "notes": "No RSS/Atom feed discovered at /feed, /rss, /atom, /blog/feed/, or /blog/rss.xml. Blog is served at https://shiphero.com/blog but does not expose a machine-readable feed.",
+  "posts": [
+    {
+      "title": "5 Top Hurdles Our Prospects Face Before Signing With ShipHero",
+      "url": "https://shiphero.com/blog/5-top-hurdles-our-prospects-face-before-signing-with-shiphero",
+      "date": "2026-04-07"
+    },
+    {
+      "title": "Meet Tap-to-Pack: Eliminate Packing Errors and Speed Up Your Pack Line",
+      "url": "https://shiphero.com/blog/meet-tap-to-pack-eliminate-packing-errors-and-speed-up-your-pack-line",
+      "date": "2026-03-02"
+    },
+    {
+      "title": "How AI is Transforming Warehouse Management: Impact, Benefits, and Use Cases",
+      "url": "https://shiphero.com/blog/ai-in-warehouse-management",
+      "date": "2025-09-09"
+    }
+  ]
+}
