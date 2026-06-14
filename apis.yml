@@ -1,98 +1,87 @@
 aid: shiphero
 name: ShipHero
-description: >
-  ShipHero is a warehouse management system (WMS) and fulfillment platform
-  designed for brands and third-party logistics (3PL) providers operating
-  eCommerce direct-to-consumer fulfillment. The platform exposes a GraphQL
-  public API with 69 queries, 120 mutations, and 599 types covering inventory,
-  orders, shipments, purchase orders, returns, and warehouse operations. Authentication
-  uses JWT bearer tokens obtained via username and password credentials, with
-  access tokens valid for 28 days and refresh-token-based renewal. ShipHero
-  enforces a credit-based rate limit system and supports 18 webhook event types
-  for real-time integration with fulfillment workflows.
+description: 'ShipHero is a warehouse management system (WMS) and fulfillment platform
+  designed for brands and third-party logistics (3PL) providers operating eCommerce
+  direct-to-consumer fulfillment. The platform exposes a GraphQL public API with 69
+  queries, 120 mutations, and 599 types covering inventory, orders, shipments, purchase
+  orders, returns, and warehouse operations. Authentication uses JWT bearer tokens
+  obtained via username and password credentials, with access tokens valid for 28
+  days and refresh-token-based renewal. ShipHero enforces a credit-based rate limit
+  system and supports 18 webhook event types for real-time integration with fulfillment
+  workflows.
+
+  '
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Warehouse Management
-  - Fulfillment
-  - eCommerce
-  - GraphQL
-  - Inventory
-  - Orders
-  - Shipments
-  - 3PL
-  - Logistics
+- Warehouse Management
+- Fulfillment
+- eCommerce
+- GraphQL
+- Inventory
+- Orders
+- Shipments
+- 3PL
+- Logistics
 url: https://raw.githubusercontent.com/api-evangelist/shiphero/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
-
 apis:
+- aid: shiphero:graphql-api
+  name: ShipHero GraphQL API
+  description: 'ShipHero''s primary public API built on GraphQL, providing programmatic
+    access to warehouse management data and operations including inventory, orders,
+    shipments, purchase orders, returns, wholesale orders, assembly products, labor
+    metrics, and billing. The API uses a credit-based complexity system and supports
+    query analysis before execution.
 
-  - aid: shiphero:graphql-api
-    name: ShipHero GraphQL API
-    description: >
-      ShipHero's primary public API built on GraphQL, providing programmatic
-      access to warehouse management data and operations including inventory,
-      orders, shipments, purchase orders, returns, wholesale orders, assembly
-      products, labor metrics, and billing. The API uses a credit-based
-      complexity system and supports query analysis before execution.
-    humanURL: https://developer.shiphero.com/
-    baseURL: https://public-api.shiphero.com/graphql
-    tags:
-      - GraphQL
-      - Inventory
-      - Orders
-      - Shipments
-      - Warehouse
-      - Fulfillment
-    properties:
-      - type: Documentation
-        url: https://developer.shiphero.com/
-      - type: GettingStarted
-        url: https://developer.shiphero.com/getting-started/
-      - type: GraphQLPrimer
-        url: https://developer.shiphero.com/graphql-primer/
-      - type: GraphQLSchema
-        url: https://developer.shiphero.com/schema/
-      - type: Webhooks
-        url: https://developer.shiphero.com/webhooks/
-
-common:
-
-  - type: Website
-    url: https://shiphero.com/
-
+    '
+  humanURL: https://developer.shiphero.com/
+  baseURL: https://public-api.shiphero.com/graphql
+  tags:
+  - GraphQL
+  - Inventory
+  - Orders
+  - Shipments
+  - Warehouse
+  - Fulfillment
+  properties:
   - type: Documentation
     url: https://developer.shiphero.com/
-
   - type: GettingStarted
     url: https://developer.shiphero.com/getting-started/
-
-  - type: GitHubOrganization
-    url: https://github.com/Shiphero
-
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/shiphero
-
-  - type: Blog
-    url: https://shiphero.com/blog
-
-  - type: X
-    url: https://x.com/weareshiphero
-
-  - type: StatusPage
-    url: https://status.shiphero.com/
-
-  - type: Plans
-    url: plans/shiphero-plans-pricing.yml
-
-  - type: RateLimits
-    url: rate-limits/shiphero-rate-limits.yml
-
-  - type: FinOps
-    url: finops/shiphero-finops.yml
-
+  - type: GraphQLPrimer
+    url: https://developer.shiphero.com/graphql-primer/
+  - type: GraphQLSchema
+    url: https://developer.shiphero.com/schema/
+  - type: Webhooks
+    url: https://developer.shiphero.com/webhooks/
+  - url: graphql/shiphero-graphql.md
+    type: GraphQL
+common:
+- type: Website
+  url: https://shiphero.com/
+- type: Documentation
+  url: https://developer.shiphero.com/
+- type: GettingStarted
+  url: https://developer.shiphero.com/getting-started/
+- type: GitHubOrganization
+  url: https://github.com/Shiphero
+- type: LinkedIn
+  url: https://www.linkedin.com/company/shiphero
+- type: Blog
+  url: https://shiphero.com/blog
+- type: X
+  url: https://x.com/weareshiphero
+- type: StatusPage
+  url: https://status.shiphero.com/
+- type: Plans
+  url: plans/shiphero-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/shiphero-rate-limits.yml
+- type: FinOps
+  url: finops/shiphero-finops.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

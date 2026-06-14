@@ -1,0 +1,2915 @@
+"""
+ShipHero GraphQL API Schema
+Endpoint: https://public-api.shiphero.com/graphql
+Documentation: https://developer.shiphero.com/schema/
+Source: Derived from official ShipHero API Reference documentation
+Authentication: JWT Bearer token (28-day access tokens, refresh-token renewal)
+"""
+
+scalar DateTime
+scalar BigInt
+
+# ─────────────────────────────────────────────
+# Root Types
+# ─────────────────────────────────────────────
+
+type Query {
+  account(analyze: Boolean): AccountQueryResult
+  ad_hoc_charges(
+    warehouse_id: String
+    bill_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): AdHocChargesQueryResult
+  bill(id: String, analyze: Boolean): BillQueryResult
+  bills(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): BillsQueryResult
+  carrier_box(id: String, analyze: Boolean): CarrierBoxQueryResult
+  carrier_boxes(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): CarrierBoxesQueryResult
+  custom_box(id: String, analyze: Boolean): CustomBoxQueryResult
+  custom_boxes(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): CustomBoxesQueryResult
+  cycle_count(id: String, analyze: Boolean): CycleCountQueryResult
+  cycle_counts(
+    warehouse_id: String
+    status: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): CycleCountsQueryResult
+  expiration_lots(
+    sku: String
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ExpirationLotsQueryResult
+  fulfillment_invoice(id: String, analyze: Boolean): FulfillmentInvoiceQueryResult
+  fulfillment_invoices(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): FulfillmentInvoicesQueryResult
+  inbound_shipment(id: String!, analyze: Boolean): InboundShipmentQueryResult
+  inbound_shipment_images(id: String!, analyze: Boolean): InboundShipmentImagesQueryResult
+  inbound_shipment_location_summary(id: String!, analyze: Boolean): InboundShipmentLocationSummaryQueryResult
+  inbound_shipment_summary(id: String!, analyze: Boolean): InboundShipmentSummaryQueryResult
+  inbound_shipments(
+    warehouse_id: String
+    status: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): InboundShipmentsQueryResult
+  inventory_changes(
+    sku: String
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): InventoryChangesQueryResult
+  inventory_snapshot(id: String!, analyze: Boolean): InventorySnapshotQueryResult
+  inventory_snapshots(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): InventorySnapshotsQueryResult
+  inventory_sync_items_status(sync_id: String!, analyze: Boolean): InventorySyncItemsStatusQueryResult
+  inventory_sync_status(id: String!, analyze: Boolean): InventorySyncStatusQueryResult
+  inventory_sync_statuses(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): InventorySyncStatusesQueryResult
+  item_locations(
+    sku: String
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ItemLocationsQueryResult
+  labor_jobs(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): LaborJobsQueryResult
+  labor_units(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): LaborUnitsQueryResult
+  labor_workers(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): LaborWorkersQueryResult
+  lakehero_data_export(analyze: Boolean): LakeheroDataExportQueryResult
+  location(id: String, name: String, analyze: Boolean): LocationQueryResult
+  locations(
+    warehouse_id: String
+    zone: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): LocationsQueryResult
+  me(analyze: Boolean): MeQueryResult
+  mergeable_orders(
+    order_id: String!
+    analyze: Boolean
+    first: Int
+    after: String
+  ): MergeableOrdersQueryResult
+  node(id: String!): Node
+  order(id: String!, analyze: Boolean): OrderQueryResult
+  order_history(
+    id: String!
+    analyze: Boolean
+    first: Int
+    after: String
+  ): OrderHistoryQueryResult
+  orders(
+    warehouse_id: String
+    fulfillment_status: String
+    order_date_from: String
+    order_date_to: String
+    updated_from: String
+    updated_to: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): OrdersQueryResult
+  packers_performance_dashboard(
+    warehouse_id: String
+    date_from: String
+    date_to: String
+    analyze: Boolean
+  ): PackersPerformanceDashboardQueryResult
+  packs_per_day(
+    warehouse_id: String
+    date_from: String
+    date_to: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): PacksPerDayQueryResult
+  pickers_performance_dashboard(
+    warehouse_id: String
+    date_from: String
+    date_to: String
+    analyze: Boolean
+  ): PickersPerformanceDashboardQueryResult
+  picks_per_day(
+    warehouse_id: String
+    date_from: String
+    date_to: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): PicksPerDayQueryResult
+  product(
+    id: String
+    sku: String
+    barcode: String
+    customer_account_id: String
+    analyze: Boolean
+  ): ProductQueryResult
+  products(
+    sku: String
+    barcode: String
+    customer_account_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ProductsQueryResult
+  purchase_order(
+    id: String
+    po_number: String
+    analyze: Boolean
+  ): PurchaseOrderQueryResult
+  purchase_orders(
+    warehouse_id: String
+    vendor_id: String
+    fulfillment_status: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): PurchaseOrdersQueryResult
+  recurring_data_export(analyze: Boolean): RecurringDataExportQueryResult
+  return(id: String!, analyze: Boolean): ReturnQueryResult
+  return_exchange(id: String!, analyze: Boolean): ReturnExchangeQueryResult
+  returns(
+    warehouse_id: String
+    status: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ReturnsQueryResult
+  shipment(id: String, analyze: Boolean): ShipmentQueryResult
+  shipments(
+    order_id: String
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ShipmentsQueryResult
+  shipping_container(id: String!, analyze: Boolean): ShippingContainerQueryResult
+  shipping_containers(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ShippingContainersQueryResult
+  shipping_plan(id: String!, analyze: Boolean): ShippingPlanQueryResult
+  tote(
+    id: String
+    barcode: String
+    warehouse_id: String
+    analyze: Boolean
+  ): ToteQueryResult
+  tote_history(
+    id: String
+    barcode: String
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): ToteHistoryQueryResult
+  totes(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): TotesQueryResult
+  user(
+    id: String
+    customer_account_id: String
+    email: String
+    account_pin: String
+    analyze: Boolean
+  ): UserQueryResult
+  user_quota(analyze: Boolean): UserQuotaQueryResult
+  users(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): UsersQueryResult
+  uuid: String
+  vendors(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): VendorsQueryResult
+  warehouse_products(
+    ids: [String]
+    warehouse_id: String
+    sku: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): WarehouseProductsQueryResult
+  webhooks(analyze: Boolean): WebhooksQueryResult
+  wholesale_order(id: String!, analyze: Boolean): WholesaleOrderQueryResult
+  wholesale_orders(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): WholesaleOrdersQueryResult
+  wholesale_staging_location_candidates(
+    warehouse_id: String!
+    analyze: Boolean
+  ): WholesaleStagingLocationCandidatesQueryResult
+  work_order(id: String!, analyze: Boolean): WorkOrderQueryResult
+  work_orders(
+    warehouse_id: String
+    analyze: Boolean
+    first: Int
+    after: String
+  ): WorkOrdersQueryResult
+}
+
+type Mutation {
+  assembly_add_components(data: AddAssemblyComponentsInput!): AddAssemblyComponentsOutput
+  assembly_clear_components(data: ClearAssemblyComponentsInput!): ClearAssemblyComponentsOutput
+  assembly_remove_components(data: RemoveAssemblyComponentsInput!): RemoveAssemblyComponentsOutput
+  assembly_update_components(data: UpdateAssemblyComponentsInput!): UpdateAssemblyComponentsOutput
+  bill_add_ad_hoc_charge(data: AddBillAdHocChargeInput!): AddBillAdHocChargeOutput
+  bill_create(data: CreateBillInput!): BillOutput
+  bill_delete(id: String!): BillOutput
+  bill_recalculate(id: String!): BillOutput
+  bill_submit(id: String!): BillOutput
+  bill_update(data: UpdateBillInput!): BillOutput
+  bill_update_ad_hoc_charge(data: UpdateBillAdHocChargeInput!): UpdateBillAdHocChargeOutput
+  carrier_box_update(data: UpdateCarrierBoxInput!): CarrierBoxOutput
+  clear_tote(data: ClearToteInput!): ToteOutput
+  custom_box_create(data: CreateCustomBoxInput!): CustomBoxOutput
+  custom_box_delete(id: String!): CustomBoxOutput
+  custom_box_update(data: UpdateCustomBoxInput!): CustomBoxOutput
+  cycle_count_items_create(data: CreateCycleCountItemsInput!): CycleCountOutput
+  cycle_count_locations_create(data: CreateCycleCountLocationsInput!): CycleCountOutput
+  cycle_count_recount_create(data: CreateCycleCountRecountInput!): CycleCountOutput
+  inbound_shipment_create(data: CreateInboundShipmentInput!): InboundShipmentOutput
+  inbound_shipment_update(data: UpdateInboundShipmentInput!): InboundShipmentOutput
+  inventory_abort_snapshot(data: AbortInventorySyncInput!): AbortInventorySyncOutput
+  inventory_add(data: InventoryAddInput!): InventoryChangeOutput
+  inventory_generate_snapshot(data: GenerateInventorySnapshotInput!): InventorySnapshotOutput
+  inventory_remove(data: InventoryRemoveInput!): InventoryChangeOutput
+  inventory_replace(data: InventoryReplaceInput!): InventoryChangeOutput
+  inventory_subtract(data: InventorySubtractInput!): InventoryChangeOutput
+  inventory_sync(data: InventorySyncInput!): InventorySyncOutput
+  inventory_sync_abort(data: AbortInventorySyncInput!): AbortInventorySyncOutput
+  inventory_transfer(data: InventoryTransferInput!): InventoryChangeOutput
+  item_location_delete(data: DeleteItemLocationInput!): ItemLocationDeleteOutput
+  kit_build(data: BuildKitInput!): KitOutput
+  kit_clear(data: ClearKitInput!): KitOutput
+  kit_remove_components(data: RemoveKitComponentsInput!): KitOutput
+  license_plate_numbers_create(data: CreateLicensePlateNumbersInput!): LicensePlateNumbersOutput
+  location_create(data: CreateLocationInput!): LocationOutput
+  location_delete(id: String!): LocationOutput
+  location_update(data: UpdateLocationInput!): LocationOutput
+  lot_assign_to_location(data: AssignLotToLocationInput!): AssignLotToLocationOutput
+  lot_create(data: CreateLotInput!): LotOutput
+  lot_delete(id: String!): LotOutput
+  lot_update(data: UpdateLotInput!): LotOutput
+  lots_update(data: UpdateLotsInput!): LotsOutput
+  order_add_attachment(data: AddOrderAttachmentInput!): OrderOutput
+  order_add_history_entry(data: AddHistoryInput!): OrderHistoryOutput
+  order_add_line_items(data: AddLineItemsInput!): OrderOutput
+  order_add_tags(data: AddOrderTagsInput!): OrderOutput
+  order_bulk_add_tags(data: BulkAddOrderTagsInput!): BulkOrderTagsOutput
+  order_bulk_remove_tags(data: BulkRemoveOrderTagsInput!): BulkOrderTagsOutput
+  order_cancel(id: String!): OrderOutput
+  order_change_warehouse(data: ChangeOrderWarehouseInput!): OrderOutput
+  order_clear_tags(id: String!): OrderOutput
+  order_create(data: CreateOrderInput!): OrderOutput
+  order_fulfill(data: FulfillOrderInput!): OrderOutput
+  order_merge(data: MergeOrdersInput!): OrderOutput
+  order_remove_line_items(data: RemoveLineItemsInput!): OrderOutput
+  order_set_line_item_sku(data: SetLineItemSkuInput!): OrderOutput
+  order_unmerge(data: UnmergeOrderInput!): OrderOutput
+  order_update(data: UpdateOrderInput!): OrderOutput
+  order_update_fulfillment_status(data: UpdateOrderFulfillmentStatusInput!): OrderOutput
+  order_update_holds(data: UpdateOrderHoldsInput!): OrderOutput
+  order_update_line_items(data: UpdateLineItemsInput!): OrderOutput
+  order_update_tags(data: UpdateOrderTagsInput!): OrderOutput
+  product_add_to_warehouse(data: AddProductToWarehouseInput!): ProductOutput
+  product_create(data: CreateProductInput!): ProductOutput
+  product_delete(id: String!): ProductOutput
+  product_update(data: UpdateProductInput!): ProductOutput
+  purchase_order_add_attachment(data: AddPurchaseOrderAttachmentInput!): AddPurchaseOrderAttachmentOutput
+  purchase_order_cancel(id: String!): PurchaseOrderOutput
+  purchase_order_close(id: String!): PurchaseOrderOutput
+  purchase_order_create(data: CreatePurchaseOrderInput!): PurchaseOrderOutput
+  purchase_order_set_fulfillment_status(data: SetPurchaseOrderFulfillmentStatusInput!): PurchaseOrderOutput
+  purchase_order_update(data: UpdatePurchaseOrderInput!): PurchaseOrderOutput
+  return_add_attachment(data: AddReturnAttachmentInput!): AddReturnAttachmentOutput
+  return_create(data: CreateReturnInput!): ReturnOutput
+  return_create_exchange(data: CreateReturnExchangeInput!): ReturnOutput
+  return_receive_line_item(data: ReceiveReturnLineItemInput!): ReturnOutput
+  return_update_status(data: UpdateReturnStatusInput!): ReturnOutput
+  shipment_create(data: CreateShipmentInput!): ShipmentOutput
+  shipment_create_shipping_label(data: CreateShippingLabelInput!): ShipmentOutput
+  shipping_plan_create(data: CreateShippingPlanInput!): ShippingPlanOutput
+  tote_clear(data: ClearToteInput!): ToteOutput
+  tote_create(data: CreateToteInput!): ToteOutput
+  tote_delete(id: String!): ToteOutput
+  tote_update(data: UpdateToteInput!): ToteOutput
+  user_update(data: UpdateUserInput!): UserOutput
+  vendor_add_product(data: AddProductToVendorInput!): VendorOutput
+  vendor_create(data: CreateVendorInput!): VendorOutput
+  vendor_delete(id: String!): VendorOutput
+  vendor_remove_product(data: RemoveProductFromVendorInput!): VendorOutput
+  warehouse_product_delete(data: DeleteWarehouseProductInput!): WarehouseProductOutput
+  warehouse_product_update(data: UpdateWarehouseProductInput!): WarehouseProductOutput
+  webhook_create(data: CreateWebhookInput!): WebhookOutput
+  webhook_delete(id: String!): WebhookOutput
+  webhook_disable(id: String!): WebhookOutput
+  webhook_enable(id: String!): WebhookOutput
+  webhook_update_url(data: UpdateWebhookUrlInput!): WebhookOutput
+  wholesale_order_auto_allocate_for_picking(data: AutoAllocateWholesaleOrderInput!): WholesaleOrderOutput
+  wholesale_order_create(data: CreateWholesaleOrderInput!): WholesaleOrderOutput
+}
+
+# ─────────────────────────────────────────────
+# Interfaces
+# ─────────────────────────────────────────────
+
+interface Node {
+  id: String!
+}
+
+# ─────────────────────────────────────────────
+# Shared / Utility Types
+# ─────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Dimensions {
+  weight: Float
+  height: Float
+  width: Float
+  length: Float
+}
+
+type Address {
+  name: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  country: String
+  zip: String
+  phone: String
+}
+
+type OrderAddress {
+  first_name: String
+  last_name: String
+  company: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  state_code: String
+  zip: String
+  country: String
+  country_code: String
+  email: String
+  phone: String
+}
+
+type ShippingLines {
+  title: String
+  carrier: String
+  method: String
+  price: Float
+}
+
+# ─────────────────────────────────────────────
+# Account
+# ─────────────────────────────────────────────
+
+type Account {
+  id: String
+  legacy_id: String
+  email: String
+  username: String
+  status: String
+  dynamic_slotting: Boolean
+  is_multi_warehouse: Boolean
+  is_3pl: Boolean
+  cycle_count_enabled: Boolean
+  ship_backorders: Boolean
+  warehouse_relationship: WarehouseRelationship
+  lot_tracking_settings: AccountLotTrackingSettings
+  customers: AccountConnection
+  warehouses: [Warehouse]
+}
+
+type AccountLotTrackingSettings {
+  is_active: Boolean
+  priority: String
+  picking_disabled_period_in_days: Int
+  verify_lot_when_packing: Boolean
+  exclude_expired_quantity_from_available: Boolean
+  lots_about_to_expire_email: Boolean
+}
+
+type WarehouseRelationship {
+  from_name: String
+  pause_shipping: Boolean
+}
+
+type AccountConnection {
+  pageInfo: PageInfo
+  edges: [AccountEdge]
+}
+
+type AccountEdge {
+  node: Account
+  cursor: String
+}
+
+type AccountQueryResult {
+  request_id: String
+  complexity: Int
+  data: Account
+}
+
+# ─────────────────────────────────────────────
+# Warehouse
+# ─────────────────────────────────────────────
+
+type Warehouse {
+  id: String
+  legacy_id: String
+  account_id: String
+  identifier: String
+  dynamic_slotting: Boolean
+  invoice_email: String
+  phone_number: String
+  profile: String
+  address: Address
+  return_address: Address
+  company_name: String
+  company_alias: String
+  active: Boolean
+  products: ProductConnection
+}
+
+# ─────────────────────────────────────────────
+# Product / WarehouseProduct
+# ─────────────────────────────────────────────
+
+type Product {
+  id: String
+  legacy_id: String
+  account_id: String
+  name: String
+  sku: String
+  price: Float
+  value: Float
+  value_currency: String
+  barcode: String
+  country_of_manufacture: String
+  dimensions: Dimensions
+  tariff_code: String
+  kit: Boolean
+  kit_build: Boolean
+  no_air: Boolean
+  final_sale: Boolean
+  customs_value: Float
+  customs_description: String
+  not_owned: Boolean
+  dropship: Boolean
+  needs_serial_number: Boolean
+  thumbnail: String
+  large_thumbnail: String
+  created_at: DateTime
+  updated_at: DateTime
+  product_note: String
+  virtual: Boolean
+  ignore_on_invoice: Boolean
+  ignore_on_customs: Boolean
+  active: Boolean
+  needs_lot_tracking: Boolean
+  is_assembly: Boolean
+  packer_note: String
+  size: String
+  style: String
+  vendor_part_number: String
+  consumer_package_code: String
+  buyer_part_number: String
+  buyer_style_number: String
+  auto_pack: Boolean
+  warehouse_products: [WarehouseProduct]
+}
+
+type WarehouseProduct {
+  id: String
+  legacy_id: String
+  account_id: String
+  sku: String
+  warehouse_id: String
+  warehouse_identifier: String
+  price: Float
+  value: Float
+  value_currency: String
+  on_hand: Int
+  inventory_bin: String
+  inventory_overstock_bin: String
+  reserve_inventory: Int
+  replenishment_level: Int
+  replenishment_max_level: Int
+  replenishment_increment: Int
+  reorder_amount: Int
+  reorder_level: Int
+  backorder: Int
+  allocated: Int
+  available: Int
+  non_sellable_quantity: Int
+  in_tote: Int
+  custom: String
+  customs_value: Float
+  created_at: DateTime
+  updated_at: DateTime
+  sell_ahead: Int
+  active: Boolean
+  warehouse: Warehouse
+}
+
+type ProductConnection {
+  pageInfo: PageInfo
+  edges: [ProductEdge]
+}
+
+type ProductEdge {
+  node: Product
+  cursor: String
+}
+
+type ProductQueryResult {
+  request_id: String
+  complexity: Int
+  data: Product
+}
+
+type ProductsQueryResult {
+  request_id: String
+  complexity: Int
+  data: ProductConnection
+}
+
+type ProductOutput {
+  request_id: String
+  complexity: Int
+  product: Product
+}
+
+type WarehouseProductsQueryResult {
+  request_id: String
+  complexity: Int
+  data: [WarehouseProduct]
+}
+
+type WarehouseProductOutput {
+  request_id: String
+  complexity: Int
+  warehouse_product: WarehouseProduct
+}
+
+# ─────────────────────────────────────────────
+# Order / LineItem
+# ─────────────────────────────────────────────
+
+type Order {
+  id: String
+  legacy_id: String
+  order_number: String
+  partner_order_id: String
+  shop_name: String
+  fulfillment_status: String
+  order_date: DateTime
+  total_tax: Float
+  subtotal: Float
+  total_discounts: Float
+  total_price: Float
+  box_name: String
+  ready_to_ship: Boolean
+  auto_print_return_label: Boolean
+  custom_invoice_url: String
+  account_id: String
+  updated_at: DateTime
+  created_at: DateTime
+  email: String
+  profile: String
+  gift_note: String
+  packing_note: String
+  required_ship_date: DateTime
+  shipping_lines: [ShippingLines]
+  shipping_address: OrderAddress
+  billing_address: OrderAddress
+  tags: [String]
+  line_items: LineItemConnection
+  holds: [String]
+  warehouse_id: String
+}
+
+type LineItem {
+  id: String
+  legacy_id: String
+  sku: String
+  partner_line_item_id: String
+  product_id: String
+  quantity: Int
+  price: Float
+  product_name: String
+  option_title: String
+  fulfillment_status: String
+  quantity_pending_fulfillment: Int
+  quantity_shipped: Int
+  warehouse: String
+  quantity_allocated: Int
+  backorder_quantity: Int
+  custom_options: String
+  custom_barcode: String
+  eligible_for_return: Boolean
+  customs_value: Float
+  warehouse_id: String
+  locked_to_warehouse_id: String
+  subtotal: Float
+  barcode: String
+  created_at: DateTime
+  updated_at: DateTime
+  order_id: String
+  shipped_line_item_lots: [ShippedLineItemLot]
+}
+
+type ShippedLineItemLot {
+  id: String
+  legacy_id: String
+  line_item_id: String
+  lot_id: String
+  lot_name: String
+  lot_expiration_date: DateTime
+}
+
+type LineItemConnection {
+  pageInfo: PageInfo
+  edges: [LineItemEdge]
+}
+
+type LineItemEdge {
+  node: LineItem
+  cursor: String
+}
+
+type OrderQueryResult {
+  request_id: String
+  complexity: Int
+  data: Order
+}
+
+type OrdersQueryResult {
+  request_id: String
+  complexity: Int
+  data: OrderConnection
+}
+
+type OrderConnection {
+  pageInfo: PageInfo
+  edges: [OrderEdge]
+}
+
+type OrderEdge {
+  node: Order
+  cursor: String
+}
+
+type OrderOutput {
+  request_id: String
+  complexity: Int
+  order: Order
+}
+
+type OrderHistoryOutput {
+  request_id: String
+  complexity: Int
+  data: [OrderHistoryEntry]
+}
+
+type OrderHistoryQueryResult {
+  request_id: String
+  complexity: Int
+  data: OrderHistoryConnection
+}
+
+type OrderHistoryConnection {
+  pageInfo: PageInfo
+  edges: [OrderHistoryEdge]
+}
+
+type OrderHistoryEdge {
+  node: OrderHistoryEntry
+  cursor: String
+}
+
+type OrderHistoryEntry {
+  id: String
+  legacy_id: String
+  order_id: String
+  username: String
+  information: String
+  created_at: DateTime
+}
+
+type MergeableOrdersQueryResult {
+  request_id: String
+  complexity: Int
+  data: OrderConnection
+}
+
+type BulkOrderTagsOutput {
+  request_id: String
+  complexity: Int
+}
+
+# ─────────────────────────────────────────────
+# Shipment
+# ─────────────────────────────────────────────
+
+type Shipment {
+  id: String
+  legacy_id: String
+  order_id: String
+  user_id: String
+  warehouse_id: String
+  pending_shipment_id: String
+  address: Address
+  profile: String
+  picked_up: Boolean
+  needs_refund: Boolean
+  refunded: Boolean
+  delivered: Boolean
+  shipped_off_shiphero: Boolean
+  dropshipment: Boolean
+  completed: Boolean
+  created_date: DateTime
+  line_items: ShipmentLineItemConnection
+  shipping_labels: [ShippingLabel]
+}
+
+type ShipmentLineItem {
+  id: String
+  legacy_id: String
+  line_item_id: String
+  shipment_id: String
+  shipping_label_id: String
+  quantity: Int
+  line_item: LineItem
+}
+
+type ShipmentLineItemConnection {
+  pageInfo: PageInfo
+  edges: [ShipmentLineItemEdge]
+}
+
+type ShipmentLineItemEdge {
+  node: ShipmentLineItem
+  cursor: String
+}
+
+type ShippingLabel {
+  id: String
+  legacy_id: String
+  tracking_number: String
+  carrier: String
+  shipping_method: String
+  cost: Float
+  pdf_location: String
+  created_at: DateTime
+}
+
+type ShipmentQueryResult {
+  request_id: String
+  complexity: Int
+  data: Shipment
+}
+
+type ShipmentsQueryResult {
+  request_id: String
+  complexity: Int
+  data: ShipmentConnection
+}
+
+type ShipmentConnection {
+  pageInfo: PageInfo
+  edges: [ShipmentEdge]
+}
+
+type ShipmentEdge {
+  node: Shipment
+  cursor: String
+}
+
+type ShipmentOutput {
+  request_id: String
+  complexity: Int
+  shipment: Shipment
+}
+
+# ─────────────────────────────────────────────
+# Purchase Order
+# ─────────────────────────────────────────────
+
+type PurchaseOrder {
+  id: String
+  legacy_id: String
+  po_number: String
+  account_id: String
+  warehouse_id: String
+  vendor_id: String
+  created_at: DateTime
+  po_date: DateTime
+  date_closed: DateTime
+  arrived_at: DateTime
+  packing_note: String
+  fulfillment_status: String
+  po_note: String
+  description: String
+  partner_order_number: String
+  subtotal: Float
+  discount: Float
+  total_price: Float
+  tax: Float
+  shipping_method: String
+  shipping_carrier: String
+  shipping_name: String
+  shipping_price: Float
+  tracking_number: String
+  pdf: String
+  images: [String]
+  payment_method: String
+  payment_due_by: DateTime
+  payment_note: String
+  locking: Boolean
+  locked_by_user_id: String
+  line_items: PurchaseOrderLineItemConnection
+}
+
+type PurchaseOrderLineItem {
+  id: String
+  legacy_id: String
+  po_id: String
+  account_id: String
+  warehouse_id: String
+  vendor_id: String
+  po_number: String
+  sku: String
+  vendor_sku: String
+  product_id: String
+  variant_id: String
+  quantity: Int
+  quantity_received: Int
+  quantity_rejected: Int
+  price: Float
+  product_name: String
+  option_title: String
+  expected_weight_in_lbs: Float
+  fulfillment_status: String
+  sell_ahead: Int
+  note: String
+  partner_line_item_id: String
+  barcode: String
+  updated_at: DateTime
+  created_at: DateTime
+  vendor: Vendor
+}
+
+type PurchaseOrderLineItemConnection {
+  pageInfo: PageInfo
+  edges: [PurchaseOrderLineItemEdge]
+}
+
+type PurchaseOrderLineItemEdge {
+  node: PurchaseOrderLineItem
+  cursor: String
+}
+
+type PurchaseOrderQueryResult {
+  request_id: String
+  complexity: Int
+  data: PurchaseOrder
+}
+
+type PurchaseOrdersQueryResult {
+  request_id: String
+  complexity: Int
+  data: PurchaseOrderConnection
+}
+
+type PurchaseOrderConnection {
+  pageInfo: PageInfo
+  edges: [PurchaseOrderEdge]
+}
+
+type PurchaseOrderEdge {
+  node: PurchaseOrder
+  cursor: String
+}
+
+type PurchaseOrderOutput {
+  request_id: String
+  complexity: Int
+  purchase_order: PurchaseOrder
+}
+
+type AddPurchaseOrderAttachmentOutput {
+  request_id: String
+  complexity: Int
+}
+
+# ─────────────────────────────────────────────
+# Return
+# ─────────────────────────────────────────────
+
+type Return {
+  id: String
+  legacy_id: String
+  account_id: String
+  order_id: String
+  partner_id: String
+  reason: String
+  status: String
+  label_type: String
+  label_cost: Float
+  labels: [RMALabel]
+  cost_to_customer: Float
+  shipping_carrier: String
+  shipping_method: String
+  dimensions: Dimensions
+  address: Address
+  line_items: [ReturnLineItem]
+}
+
+type RMALabel {
+  id: String
+  legacy_id: String
+  tracking_number: String
+  status: String
+  created_date: DateTime
+  carrier: String
+  shipping_method: String
+  cost: Float
+  dimensions: Dimensions
+  length: Float
+  width: Float
+  height: Float
+  weight: Float
+  to_name: String
+  address1: String
+  address2: String
+  address_city: String
+  address_state: String
+  address_zip: String
+  address_country: String
+  pdf_location: String
+}
+
+type ReturnLineItem {
+  id: String
+  legacy_id: String
+  account_id: String
+  line_item_id: String
+  warehouse_id: String
+  product_id: String
+  return_id: String
+  quantity: Int
+  quantity_received: Int
+  restock: Boolean
+  condition: String
+  is_component: Boolean
+  type: String
+  reason: String
+  created_at: DateTime
+  updated_at: DateTime
+  line_item: LineItem
+}
+
+type ReturnQueryResult {
+  request_id: String
+  complexity: Int
+  data: Return
+}
+
+type ReturnExchangeQueryResult {
+  request_id: String
+  complexity: Int
+  data: Return
+}
+
+type ReturnsQueryResult {
+  request_id: String
+  complexity: Int
+  data: ReturnConnection
+}
+
+type ReturnConnection {
+  pageInfo: PageInfo
+  edges: [ReturnEdge]
+}
+
+type ReturnEdge {
+  node: Return
+  cursor: String
+}
+
+type ReturnOutput {
+  request_id: String
+  complexity: Int
+  return: Return
+}
+
+type AddReturnAttachmentOutput {
+  request_id: String
+  complexity: Int
+}
+
+# ─────────────────────────────────────────────
+# Location
+# ─────────────────────────────────────────────
+
+type Location {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  type: LocationType
+  name: String
+  zone: String
+  pickable: Boolean
+  sellable: Boolean
+  staging: Boolean
+  is_cart: Boolean
+  pick_priority: Int
+  dimensions: Dimensions
+  length: Float
+  width: Float
+  height: Float
+  max_weight: Float
+  temperature: String
+  products: ProductConnection
+}
+
+type LocationType {
+  id: String
+  legacy_id: String
+  account_id: String
+  name: String
+  daily_storage_cost: Float
+  category: String
+  is_lpn_allowed: Boolean
+}
+
+type LocationQueryResult {
+  request_id: String
+  complexity: Int
+  data: Location
+}
+
+type LocationsQueryResult {
+  request_id: String
+  complexity: Int
+  data: LocationConnection
+}
+
+type LocationConnection {
+  pageInfo: PageInfo
+  edges: [LocationEdge]
+}
+
+type LocationEdge {
+  node: Location
+  cursor: String
+}
+
+type LocationOutput {
+  request_id: String
+  complexity: Int
+  location: Location
+}
+
+# ─────────────────────────────────────────────
+# Vendor
+# ─────────────────────────────────────────────
+
+type Vendor {
+  id: String
+  legacy_id: String
+  name: String
+  email: String
+  account_number: String
+  account_id: String
+  address: Address
+  currency: String
+  internal_note: String
+  default_po_note: String
+  logo: String
+  partner_vendor_id: String
+  created_at: DateTime
+}
+
+type VendorsQueryResult {
+  request_id: String
+  complexity: Int
+  data: VendorConnection
+}
+
+type VendorConnection {
+  pageInfo: PageInfo
+  edges: [VendorEdge]
+}
+
+type VendorEdge {
+  node: Vendor
+  cursor: String
+}
+
+type VendorOutput {
+  request_id: String
+  complexity: Int
+  vendor: Vendor
+}
+
+# ─────────────────────────────────────────────
+# Lot (Expiration / Lot Tracking)
+# ─────────────────────────────────────────────
+
+type Lot {
+  id: String
+  legacy_id: String
+  account_id: String
+  po_id: String
+  name: String
+  sku: String
+  created_at: DateTime
+  updated_at: DateTime
+  expires_at: DateTime
+  received_at: DateTime
+  is_active: Boolean
+  locations: LocationConnection
+}
+
+type LotOutput {
+  request_id: String
+  complexity: Int
+  lot: Lot
+}
+
+type LotsOutput {
+  request_id: String
+  complexity: Int
+  lots: [Lot]
+}
+
+type ExpirationLotsQueryResult {
+  request_id: String
+  complexity: Int
+  data: [Lot]
+}
+
+type AssignLotToLocationOutput {
+  request_id: String
+  complexity: Int
+}
+
+# ─────────────────────────────────────────────
+# Tote
+# ─────────────────────────────────────────────
+
+type Tote {
+  id: String
+  legacy_id: String
+  name: String
+  barcode: String
+  barcode_pdf: String
+  barcode_image: String
+  color: String
+  color_name: String
+  last_activity: DateTime
+  picked_quantity: Int
+  warehouse: Warehouse
+}
+
+type ToteQueryResult {
+  request_id: String
+  complexity: Int
+  data: Tote
+}
+
+type ToteHistoryQueryResult {
+  request_id: String
+  complexity: Int
+  data: ToteHistoryConnection
+}
+
+type ToteHistoryConnection {
+  pageInfo: PageInfo
+  edges: [ToteHistoryEdge]
+}
+
+type ToteHistoryEdge {
+  node: ToteHistoryEntry
+  cursor: String
+}
+
+type ToteHistoryEntry {
+  id: String
+  legacy_id: String
+  tote_id: String
+  action: String
+  created_at: DateTime
+}
+
+type TotesQueryResult {
+  request_id: String
+  complexity: Int
+  data: ToteConnection
+}
+
+type ToteConnection {
+  pageInfo: PageInfo
+  edges: [ToteEdge]
+}
+
+type ToteEdge {
+  node: Tote
+  cursor: String
+}
+
+type ToteOutput {
+  request_id: String
+  complexity: Int
+  tote: Tote
+}
+
+# ─────────────────────────────────────────────
+# User
+# ─────────────────────────────────────────────
+
+type User {
+  id: String
+  legacy_id: String
+  email: String
+  first_name: String
+  last_name: String
+  created_at: DateTime
+  updated_at: DateTime
+  is_admin: Boolean
+  profile_image: String
+  default_picking_option: String
+  position: String
+  hourly_rate: Float
+  payroll_id: String
+  default_order_status: String
+  default_warehouse_id: String
+  is_active: Boolean
+  is_developer: Boolean
+  default_pick_order_tag: String
+  account: Account
+}
+
+type AuthenticatedUser {
+  id: String
+  legacy_id: String
+  email: String
+  first_name: String
+  last_name: String
+  token: String
+  refresh_token: String
+}
+
+type UserQueryResult {
+  request_id: String
+  complexity: Int
+  data: User
+}
+
+type UsersQueryResult {
+  request_id: String
+  complexity: Int
+  data: UserConnection
+}
+
+type UserConnection {
+  pageInfo: PageInfo
+  edges: [UserEdge]
+}
+
+type UserEdge {
+  node: User
+  cursor: String
+}
+
+type MeQueryResult {
+  request_id: String
+  complexity: Int
+  data: AuthenticatedUser
+}
+
+type UserQuotaQueryResult {
+  request_id: String
+  complexity: Int
+  data: UserQuota
+}
+
+type UserQuota {
+  id: String
+  account_id: String
+  user_id: String
+  credits_used: Int
+  credits_limit: Int
+  reset_at: DateTime
+}
+
+type UserOutput {
+  request_id: String
+  complexity: Int
+  user: User
+}
+
+# ─────────────────────────────────────────────
+# Webhook
+# ─────────────────────────────────────────────
+
+type Webhook {
+  id: String
+  legacy_id: String
+  account_id: String
+  shop_name: String
+  name: String
+  url: String
+  source: String
+  enabled: Boolean
+  health: String
+  created_at: DateTime
+  updated_at: DateTime
+  last_enabled_change: DateTime
+  shared_signature_secret: String
+}
+
+type WebhooksQueryResult {
+  request_id: String
+  complexity: Int
+  data: [Webhook]
+}
+
+type WebhookOutput {
+  request_id: String
+  complexity: Int
+  webhook: Webhook
+}
+
+# ─────────────────────────────────────────────
+# Inbound Shipment
+# ─────────────────────────────────────────────
+
+type InboundShipment {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  carrier: String
+  pro_number: String
+  bol_reference: String
+  bol_url: String
+  expected_dock: DateTime
+  dock_used: String
+  container_number: String
+  notes: String
+  estimated_truck_arrival: DateTime
+  truck_arrived_at: DateTime
+  truck_unload_started_at: DateTime
+  truck_unload_finished_at: DateTime
+  truck_departure_at: DateTime
+  booking_contact_email: String
+  booking_contact_name: String
+  booking_contact_number: String
+  container_size: String
+  load_type: String
+  shipment_type: String
+  number_carton: Int
+  pallets_quantity: Int
+  people_for_unload: Int
+  people_for_receiving: Int
+  vendor_id: String
+  created_at: DateTime
+  scheduled_at: DateTime
+  status_updated_at: DateTime
+  warehouse: Warehouse
+}
+
+type InboundShipmentQueryResult {
+  request_id: String
+  complexity: Int
+  data: InboundShipment
+}
+
+type InboundShipmentsQueryResult {
+  request_id: String
+  complexity: Int
+  data: InboundShipmentConnection
+}
+
+type InboundShipmentConnection {
+  pageInfo: PageInfo
+  edges: [InboundShipmentEdge]
+}
+
+type InboundShipmentEdge {
+  node: InboundShipment
+  cursor: String
+}
+
+type InboundShipmentImagesQueryResult {
+  request_id: String
+  complexity: Int
+  data: [String]
+}
+
+type InboundShipmentLocationSummaryQueryResult {
+  request_id: String
+  complexity: Int
+  data: [InboundShipmentLocationSummary]
+}
+
+type InboundShipmentLocationSummary {
+  location_id: String
+  location_name: String
+  quantity: Int
+}
+
+type InboundShipmentSummaryQueryResult {
+  request_id: String
+  complexity: Int
+  data: InboundShipmentSummary
+}
+
+type InboundShipmentSummary {
+  id: String
+  warehouse_id: String
+  status: String
+  total_quantity: Int
+  total_quantity_received: Int
+}
+
+type InboundShipmentOutput {
+  request_id: String
+  complexity: Int
+  inbound_shipment: InboundShipment
+}
+
+# ─────────────────────────────────────────────
+# Inventory
+# ─────────────────────────────────────────────
+
+type InventoryChangeOutput {
+  request_id: String
+  complexity: Int
+}
+
+type InventorySnapshotOutput {
+  request_id: String
+  complexity: Int
+  snapshot: InventorySnapshot
+}
+
+type InventorySnapshot {
+  id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+  completed_at: DateTime
+  download_url: String
+}
+
+type InventorySnapshotQueryResult {
+  request_id: String
+  complexity: Int
+  data: InventorySnapshot
+}
+
+type InventorySnapshotsQueryResult {
+  request_id: String
+  complexity: Int
+  data: InventorySnapshotConnection
+}
+
+type InventorySnapshotConnection {
+  pageInfo: PageInfo
+  edges: [InventorySnapshotEdge]
+}
+
+type InventorySnapshotEdge {
+  node: InventorySnapshot
+  cursor: String
+}
+
+type InventorySyncOutput {
+  request_id: String
+  complexity: Int
+  sync_id: String
+}
+
+type AbortInventorySyncOutput {
+  request_id: String
+  complexity: Int
+}
+
+type InventorySyncStatus {
+  id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+  completed_at: DateTime
+  items_total: Int
+  items_processed: Int
+}
+
+type InventorySyncStatusQueryResult {
+  request_id: String
+  complexity: Int
+  data: InventorySyncStatus
+}
+
+type InventorySyncStatusesQueryResult {
+  request_id: String
+  complexity: Int
+  data: InventorySyncStatusConnection
+}
+
+type InventorySyncStatusConnection {
+  pageInfo: PageInfo
+  edges: [InventorySyncStatusEdge]
+}
+
+type InventorySyncStatusEdge {
+  node: InventorySyncStatus
+  cursor: String
+}
+
+type InventorySyncItemsStatusQueryResult {
+  request_id: String
+  complexity: Int
+  data: [InventorySyncItemStatus]
+}
+
+type InventorySyncItemStatus {
+  sku: String
+  status: String
+  error: String
+}
+
+type InventoryChangesQueryResult {
+  request_id: String
+  complexity: Int
+  data: InventoryChangeConnection
+}
+
+type InventoryChangeConnection {
+  pageInfo: PageInfo
+  edges: [InventoryChangeEdge]
+}
+
+type InventoryChangeEdge {
+  node: InventoryChange
+  cursor: String
+}
+
+type InventoryChange {
+  id: String
+  account_id: String
+  warehouse_id: String
+  sku: String
+  previous_on_hand: Int
+  change_in_on_hand: Int
+  reason: String
+  cycle_counted: Boolean
+  location_id: String
+  created_at: DateTime
+}
+
+type ItemLocationsQueryResult {
+  request_id: String
+  complexity: Int
+  data: [ItemLocation]
+}
+
+type ItemLocation {
+  id: String
+  account_id: String
+  warehouse_id: String
+  location_id: String
+  sku: String
+  quantity: Int
+  location: Location
+}
+
+type ItemLocationDeleteOutput {
+  request_id: String
+  complexity: Int
+}
+
+# ─────────────────────────────────────────────
+# Shipping Plan / Container / Label
+# ─────────────────────────────────────────────
+
+type ShippingPlan {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+}
+
+type ShippingPlanQueryResult {
+  request_id: String
+  complexity: Int
+  data: ShippingPlan
+}
+
+type ShippingPlanOutput {
+  request_id: String
+  complexity: Int
+  shipping_plan: ShippingPlan
+}
+
+type ShippingContainer {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+}
+
+type ShippingContainerQueryResult {
+  request_id: String
+  complexity: Int
+  data: ShippingContainer
+}
+
+type ShippingContainersQueryResult {
+  request_id: String
+  complexity: Int
+  data: ShippingContainerConnection
+}
+
+type ShippingContainerConnection {
+  pageInfo: PageInfo
+  edges: [ShippingContainerEdge]
+}
+
+type ShippingContainerEdge {
+  node: ShippingContainer
+  cursor: String
+}
+
+# ─────────────────────────────────────────────
+# Cycle Count
+# ─────────────────────────────────────────────
+
+type CycleCount {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+  completed_at: DateTime
+}
+
+type CycleCountQueryResult {
+  request_id: String
+  complexity: Int
+  data: CycleCount
+}
+
+type CycleCountsQueryResult {
+  request_id: String
+  complexity: Int
+  data: CycleCountConnection
+}
+
+type CycleCountConnection {
+  pageInfo: PageInfo
+  edges: [CycleCountEdge]
+}
+
+type CycleCountEdge {
+  node: CycleCount
+  cursor: String
+}
+
+type CycleCountOutput {
+  request_id: String
+  complexity: Int
+  cycle_count: CycleCount
+}
+
+# ─────────────────────────────────────────────
+# Labor / Performance
+# ─────────────────────────────────────────────
+
+type LaborJobsQueryResult {
+  request_id: String
+  complexity: Int
+  data: [LaborJob]
+}
+
+type LaborJob {
+  id: String
+  account_id: String
+  warehouse_id: String
+  name: String
+  created_at: DateTime
+}
+
+type LaborUnitsQueryResult {
+  request_id: String
+  complexity: Int
+  data: [LaborUnit]
+}
+
+type LaborUnit {
+  id: String
+  account_id: String
+  warehouse_id: String
+  name: String
+  units_per_hour: Float
+}
+
+type LaborWorkersQueryResult {
+  request_id: String
+  complexity: Int
+  data: [LaborWorker]
+}
+
+type LaborWorker {
+  id: String
+  user_id: String
+  warehouse_id: String
+  account_id: String
+  first_name: String
+  last_name: String
+}
+
+type PackersPerformanceDashboardQueryResult {
+  request_id: String
+  complexity: Int
+  data: [PackerPerformance]
+}
+
+type PackerPerformance {
+  user_id: String
+  first_name: String
+  last_name: String
+  packs: Int
+  average_packs_per_hour: Float
+}
+
+type PickersPerformanceDashboardQueryResult {
+  request_id: String
+  complexity: Int
+  data: [PickerPerformance]
+}
+
+type PickerPerformance {
+  user_id: String
+  first_name: String
+  last_name: String
+  picks: Int
+  average_picks_per_hour: Float
+}
+
+type PacksPerDayQueryResult {
+  request_id: String
+  complexity: Int
+  data: [DailyMetric]
+}
+
+type PicksPerDayQueryResult {
+  request_id: String
+  complexity: Int
+  data: [DailyMetric]
+}
+
+type DailyMetric {
+  date: String
+  count: Int
+}
+
+# ─────────────────────────────────────────────
+# Billing / Ad Hoc Charges
+# ─────────────────────────────────────────────
+
+type Bill {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+  submitted_at: DateTime
+  billing_period: BillingPeriod
+}
+
+type BillingPeriod {
+  start: DateTime
+  end: DateTime
+}
+
+type BillQueryResult {
+  request_id: String
+  complexity: Int
+  data: Bill
+}
+
+type BillsQueryResult {
+  request_id: String
+  complexity: Int
+  data: BillConnection
+}
+
+type BillConnection {
+  pageInfo: PageInfo
+  edges: [BillEdge]
+}
+
+type BillEdge {
+  node: Bill
+  cursor: String
+}
+
+type BillOutput {
+  request_id: String
+  complexity: Int
+  bill: Bill
+}
+
+type AdHocCharge {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  bill_id: String
+  description: String
+  amount: Float
+  created_at: DateTime
+}
+
+type AdHocChargesQueryResult {
+  request_id: String
+  complexity: Int
+  data: AdHocChargeConnection
+}
+
+type AdHocChargeConnection {
+  pageInfo: PageInfo
+  edges: [AdHocChargeEdge]
+}
+
+type AdHocChargeEdge {
+  node: AdHocCharge
+  cursor: String
+}
+
+type AddBillAdHocChargeOutput {
+  request_id: String
+  complexity: Int
+  ad_hoc_charge: AdHocCharge
+}
+
+type UpdateBillAdHocChargeOutput {
+  request_id: String
+  complexity: Int
+  ad_hoc_charge: AdHocCharge
+}
+
+# ─────────────────────────────────────────────
+# Wholesale Order
+# ─────────────────────────────────────────────
+
+type WholesaleOrder {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type WholesaleOrderQueryResult {
+  request_id: String
+  complexity: Int
+  data: WholesaleOrder
+}
+
+type WholesaleOrdersQueryResult {
+  request_id: String
+  complexity: Int
+  data: WholesaleOrderConnection
+}
+
+type WholesaleOrderConnection {
+  pageInfo: PageInfo
+  edges: [WholesaleOrderEdge]
+}
+
+type WholesaleOrderEdge {
+  node: WholesaleOrder
+  cursor: String
+}
+
+type WholesaleOrderOutput {
+  request_id: String
+  complexity: Int
+  wholesale_order: WholesaleOrder
+}
+
+type WholesaleStagingLocationCandidatesQueryResult {
+  request_id: String
+  complexity: Int
+  data: [Location]
+}
+
+# ─────────────────────────────────────────────
+# Work Order (Assembly)
+# ─────────────────────────────────────────────
+
+type WorkOrder {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+}
+
+type WorkOrderQueryResult {
+  request_id: String
+  complexity: Int
+  data: WorkOrder
+}
+
+type WorkOrdersQueryResult {
+  request_id: String
+  complexity: Int
+  data: WorkOrderConnection
+}
+
+type WorkOrderConnection {
+  pageInfo: PageInfo
+  edges: [WorkOrderEdge]
+}
+
+type WorkOrderEdge {
+  node: WorkOrder
+  cursor: String
+}
+
+# ─────────────────────────────────────────────
+# Fulfillment Invoice
+# ─────────────────────────────────────────────
+
+type FulfillmentInvoice {
+  id: String
+  account_id: String
+  warehouse_id: String
+  status: String
+  created_at: DateTime
+}
+
+type FulfillmentInvoiceQueryResult {
+  request_id: String
+  complexity: Int
+  data: FulfillmentInvoice
+}
+
+type FulfillmentInvoicesQueryResult {
+  request_id: String
+  complexity: Int
+  data: FulfillmentInvoiceConnection
+}
+
+type FulfillmentInvoiceConnection {
+  pageInfo: PageInfo
+  edges: [FulfillmentInvoiceEdge]
+}
+
+type FulfillmentInvoiceEdge {
+  node: FulfillmentInvoice
+  cursor: String
+}
+
+# ─────────────────────────────────────────────
+# Data Export
+# ─────────────────────────────────────────────
+
+type LakeheroDataExportQueryResult {
+  request_id: String
+  complexity: Int
+  data: DataExport
+}
+
+type RecurringDataExportQueryResult {
+  request_id: String
+  complexity: Int
+  data: DataExport
+}
+
+type DataExport {
+  id: String
+  account_id: String
+  status: String
+  download_url: String
+  created_at: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Custom / Carrier Boxes
+# ─────────────────────────────────────────────
+
+type CustomBox {
+  id: String
+  legacy_id: String
+  account_id: String
+  warehouse_id: String
+  name: String
+  length: Float
+  width: Float
+  height: Float
+  weight: Float
+}
+
+type CustomBoxQueryResult {
+  request_id: String
+  complexity: Int
+  data: CustomBox
+}
+
+type CustomBoxesQueryResult {
+  request_id: String
+  complexity: Int
+  data: CustomBoxConnection
+}
+
+type CustomBoxConnection {
+  pageInfo: PageInfo
+  edges: [CustomBoxEdge]
+}
+
+type CustomBoxEdge {
+  node: CustomBox
+  cursor: String
+}
+
+type CustomBoxOutput {
+  request_id: String
+  complexity: Int
+  custom_box: CustomBox
+}
+
+type CarrierBox {
+  id: String
+  legacy_id: String
+  name: String
+  carrier: String
+  length: Float
+  width: Float
+  height: Float
+  weight: Float
+}
+
+type CarrierBoxQueryResult {
+  request_id: String
+  complexity: Int
+  data: CarrierBox
+}
+
+type CarrierBoxesQueryResult {
+  request_id: String
+  complexity: Int
+  data: CarrierBoxConnection
+}
+
+type CarrierBoxConnection {
+  pageInfo: PageInfo
+  edges: [CarrierBoxEdge]
+}
+
+type CarrierBoxEdge {
+  node: CarrierBox
+  cursor: String
+}
+
+type CarrierBoxOutput {
+  request_id: String
+  complexity: Int
+  carrier_box: CarrierBox
+}
+
+# ─────────────────────────────────────────────
+# Assembly / Kit
+# ─────────────────────────────────────────────
+
+type AssemblyComponent {
+  id: String
+  sku: String
+  quantity: Int
+}
+
+type AssemblyOutput {
+  request_id: String
+  complexity: Int
+}
+
+type AddAssemblyComponentsOutput {
+  request_id: String
+  complexity: Int
+}
+
+type ClearAssemblyComponentsOutput {
+  request_id: String
+  complexity: Int
+}
+
+type RemoveAssemblyComponentsOutput {
+  request_id: String
+  complexity: Int
+}
+
+type UpdateAssemblyComponentsOutput {
+  request_id: String
+  complexity: Int
+}
+
+type KitOutput {
+  request_id: String
+  complexity: Int
+}
+
+# ─────────────────────────────────────────────
+# License Plate Numbers
+# ─────────────────────────────────────────────
+
+type LicensePlateNumbersOutput {
+  request_id: String
+  complexity: Int
+  license_plate_numbers: [String]
+}
+
+# ─────────────────────────────────────────────
+# Input Types (selected key inputs)
+# ─────────────────────────────────────────────
+
+input AddressInput {
+  name: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  country: String
+  zip: String
+  phone: String
+}
+
+input DimensionsInput {
+  weight: Float
+  height: Float
+  width: Float
+  length: Float
+}
+
+input CreateOrderInput {
+  order_number: String!
+  partner_order_id: String
+  shop_name: String
+  email: String
+  profile: String
+  packing_note: String
+  gift_note: String
+  required_ship_date: DateTime
+  order_date: DateTime
+  shipping_lines: [ShippingLinesInput]
+  shipping_address: OrderAddressInput
+  billing_address: OrderAddressInput
+  tags: [String]
+  line_items: [CreateLineItemInput]
+  warehouse_id: String
+}
+
+input OrderAddressInput {
+  first_name: String
+  last_name: String
+  company: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  state_code: String
+  zip: String
+  country: String
+  country_code: String
+  email: String
+  phone: String
+}
+
+input ShippingLinesInput {
+  title: String
+  carrier: String
+  method: String
+  price: Float
+}
+
+input CreateLineItemInput {
+  sku: String!
+  quantity: Int!
+  price: Float
+  product_name: String
+  option_title: String
+  partner_line_item_id: String
+  warehouse_id: String
+}
+
+input UpdateOrderInput {
+  order_id: String!
+  partner_order_id: String
+  shop_name: String
+  email: String
+  profile: String
+  packing_note: String
+  gift_note: String
+  required_ship_date: DateTime
+  shipping_lines: [ShippingLinesInput]
+  shipping_address: OrderAddressInput
+  billing_address: OrderAddressInput
+  tags: [String]
+}
+
+input CreateProductInput {
+  sku: String!
+  name: String!
+  barcode: String
+  price: Float
+  value: Float
+  value_currency: String
+  country_of_manufacture: String
+  dimensions: DimensionsInput
+  tariff_code: String
+  needs_serial_number: Boolean
+  thumbnail: String
+  product_note: String
+  packer_note: String
+  virtual: Boolean
+  active: Boolean
+  needs_lot_tracking: Boolean
+  size: String
+  style: String
+  vendor_part_number: String
+}
+
+input CreatePurchaseOrderInput {
+  vendor_id: String!
+  warehouse_id: String!
+  po_number: String
+  po_date: DateTime
+  packing_note: String
+  po_note: String
+  description: String
+  shipping_method: String
+  shipping_carrier: String
+  payment_method: String
+  line_items: [PurchaseOrderLineItemInput]
+}
+
+input PurchaseOrderLineItemInput {
+  sku: String!
+  quantity: Int!
+  price: Float
+  vendor_sku: String
+  product_name: String
+}
+
+input CreateReturnInput {
+  order_id: String!
+  reason: String
+  label_type: String
+  shipping_carrier: String
+  shipping_method: String
+  line_items: [ReturnLineItemInput]
+}
+
+input ReturnLineItemInput {
+  line_item_id: String!
+  quantity: Int!
+  reason: String
+  condition: String
+}
+
+input CreateLocationInput {
+  warehouse_id: String!
+  name: String!
+  zone: String
+  pickable: Boolean
+  sellable: Boolean
+  staging: Boolean
+  is_cart: Boolean
+  pick_priority: Int
+  dimensions: DimensionsInput
+  temperature: String
+}
+
+input CreateVendorInput {
+  name: String!
+  email: String
+  account_number: String
+  currency: String
+  address: AddressInput
+  internal_note: String
+  default_po_note: String
+}
+
+input CreateLotInput {
+  sku: String!
+  name: String!
+  po_id: String
+  expires_at: DateTime
+}
+
+input CreateWebhookInput {
+  name: String!
+  url: String!
+  shop_name: String
+  source: String
+}
+
+input CreateInboundShipmentInput {
+  warehouse_id: String!
+  vendor_id: String
+  carrier: String
+  shipment_type: String
+  load_type: String
+  estimated_truck_arrival: DateTime
+  notes: String
+  number_carton: Int
+  pallets_quantity: Int
+}
+
+input CreateToteInput {
+  warehouse_id: String!
+  name: String
+  color: String
+}
+
+input InventoryAddInput {
+  sku: String!
+  warehouse_id: String!
+  quantity: Int!
+  reason: String
+  location_id: String
+  lot_id: String
+}
+
+input InventoryRemoveInput {
+  sku: String!
+  warehouse_id: String!
+  quantity: Int!
+  reason: String
+  location_id: String
+}
+
+input InventoryReplaceInput {
+  sku: String!
+  warehouse_id: String!
+  quantity: Int!
+  reason: String
+  location_id: String
+}
+
+input InventorySubtractInput {
+  sku: String!
+  warehouse_id: String!
+  quantity: Int!
+  reason: String
+}
+
+input InventoryTransferInput {
+  sku: String!
+  from_warehouse_id: String!
+  to_warehouse_id: String!
+  quantity: Int!
+}
+
+input InventorySyncInput {
+  warehouse_id: String!
+  items: [InventorySyncItemInput]!
+}
+
+input InventorySyncItemInput {
+  sku: String!
+  quantity: Int!
+}
+
+input AbortInventorySyncInput {
+  sync_id: String!
+}
+
+input GenerateInventorySnapshotInput {
+  warehouse_id: String!
+}
+
+input AddProductToWarehouseInput {
+  sku: String!
+  warehouse_id: String!
+  price: Float
+  value: Float
+}
+
+input AddHistoryInput {
+  order_id: String!
+  information: String!
+  username: String
+}
+
+input AddLineItemsInput {
+  order_id: String!
+  line_items: [CreateLineItemInput]!
+}
+
+input AddOrderTagsInput {
+  order_id: String!
+  tags: [String]!
+}
+
+input UpdateOrderTagsInput {
+  order_id: String!
+  tags: [String]!
+}
+
+input BulkAddOrderTagsInput {
+  order_ids: [String]!
+  tags: [String]!
+}
+
+input BulkRemoveOrderTagsInput {
+  order_ids: [String]!
+  tags: [String]!
+}
+
+input ChangeOrderWarehouseInput {
+  order_id: String!
+  warehouse_id: String!
+}
+
+input MergeOrdersInput {
+  order_id: String!
+  order_ids: [String]!
+}
+
+input UnmergeOrderInput {
+  order_id: String!
+}
+
+input FulfillOrderInput {
+  order_id: String!
+  profile: String
+}
+
+input UpdateOrderFulfillmentStatusInput {
+  order_id: String!
+  fulfillment_status: String!
+}
+
+input UpdateOrderHoldsInput {
+  order_id: String!
+  holds: [String]!
+}
+
+input RemoveLineItemsInput {
+  order_id: String!
+  line_item_ids: [String]!
+}
+
+input UpdateLineItemsInput {
+  order_id: String!
+  line_items: [UpdateLineItemInput]!
+}
+
+input UpdateLineItemInput {
+  id: String!
+  quantity: Int
+  price: Float
+  warehouse_id: String
+}
+
+input SetLineItemSkuInput {
+  line_item_id: String!
+  sku: String!
+}
+
+input AddOrderAttachmentInput {
+  order_id: String!
+  url: String!
+  name: String
+}
+
+input CreateShipmentInput {
+  order_id: String!
+  warehouse_id: String
+  profile: String
+}
+
+input CreateShippingLabelInput {
+  shipment_id: String!
+  carrier: String
+  method: String
+}
+
+input CreateShippingPlanInput {
+  warehouse_id: String!
+  order_ids: [String]!
+}
+
+input SetPurchaseOrderFulfillmentStatusInput {
+  po_id: String!
+  fulfillment_status: String!
+}
+
+input UpdatePurchaseOrderInput {
+  po_id: String!
+  po_number: String
+  packing_note: String
+  po_note: String
+}
+
+input AddPurchaseOrderAttachmentInput {
+  po_id: String!
+  url: String!
+  name: String
+}
+
+input UpdateReturnStatusInput {
+  return_id: String!
+  status: String!
+}
+
+input ReceiveReturnLineItemInput {
+  return_line_item_id: String!
+  quantity: Int!
+  restock: Boolean
+  condition: String
+}
+
+input CreateReturnExchangeInput {
+  return_id: String!
+  line_items: [CreateLineItemInput]!
+}
+
+input AddReturnAttachmentInput {
+  return_id: String!
+  url: String!
+  name: String
+}
+
+input UpdateLocationInput {
+  location_id: String!
+  name: String
+  zone: String
+  pickable: Boolean
+  sellable: Boolean
+  staging: Boolean
+  pick_priority: Int
+  temperature: String
+}
+
+input DeleteItemLocationInput {
+  location_id: String!
+  sku: String!
+  warehouse_id: String!
+}
+
+input AssignLotToLocationInput {
+  lot_id: String!
+  location_id: String!
+  quantity: Int
+}
+
+input UpdateLotInput {
+  lot_id: String!
+  name: String
+  expires_at: DateTime
+  is_active: Boolean
+}
+
+input UpdateLotsInput {
+  lots: [UpdateLotInput]!
+}
+
+input UpdateWebhookUrlInput {
+  webhook_id: String!
+  url: String!
+}
+
+input UpdateWarehouseProductInput {
+  warehouse_id: String!
+  sku: String!
+  on_hand: Int
+  inventory_bin: String
+  inventory_overstock_bin: String
+  reserve_inventory: Int
+  replenishment_level: Int
+  reorder_amount: Int
+  reorder_level: Int
+  sell_ahead: Int
+  active: Boolean
+}
+
+input DeleteWarehouseProductInput {
+  warehouse_id: String!
+  sku: String!
+}
+
+input UpdateProductInput {
+  product_id: String!
+  name: String
+  barcode: String
+  price: Float
+  value: Float
+  country_of_manufacture: String
+  dimensions: DimensionsInput
+  tariff_code: String
+  thumbnail: String
+  product_note: String
+  packer_note: String
+  virtual: Boolean
+  active: Boolean
+}
+
+input AddProductToVendorInput {
+  vendor_id: String!
+  sku: String!
+  vendor_sku: String
+  price: Float
+}
+
+input RemoveProductFromVendorInput {
+  vendor_id: String!
+  sku: String!
+}
+
+input UpdateUserInput {
+  user_id: String!
+  first_name: String
+  last_name: String
+  is_admin: Boolean
+  is_active: Boolean
+  hourly_rate: Float
+  position: String
+}
+
+input UpdateCarrierBoxInput {
+  carrier_box_id: String!
+  name: String
+}
+
+input CreateCustomBoxInput {
+  warehouse_id: String!
+  name: String!
+  length: Float!
+  width: Float!
+  height: Float!
+  weight: Float
+}
+
+input UpdateCustomBoxInput {
+  custom_box_id: String!
+  name: String
+  length: Float
+  width: Float
+  height: Float
+  weight: Float
+}
+
+input CreateCycleCountItemsInput {
+  warehouse_id: String!
+  skus: [String]!
+}
+
+input CreateCycleCountLocationsInput {
+  warehouse_id: String!
+  location_ids: [String]!
+}
+
+input CreateCycleCountRecountInput {
+  cycle_count_id: String!
+}
+
+input UpdateToteInput {
+  tote_id: String!
+  name: String
+  color: String
+}
+
+input ClearToteInput {
+  tote_id: String!
+}
+
+input AddBillAdHocChargeInput {
+  bill_id: String!
+  description: String!
+  amount: Float!
+}
+
+input UpdateBillAdHocChargeInput {
+  ad_hoc_charge_id: String!
+  description: String
+  amount: Float
+}
+
+input CreateBillInput {
+  warehouse_id: String!
+  account_id: String!
+  billing_period_start: DateTime!
+  billing_period_end: DateTime!
+}
+
+input UpdateBillInput {
+  bill_id: String!
+  status: String
+}
+
+input AddAssemblyComponentsInput {
+  product_id: String!
+  components: [AddAssemblyComponentsComponentInput]!
+}
+
+input AddAssemblyComponentsComponentInput {
+  sku: String!
+  quantity: Int!
+}
+
+input ClearAssemblyComponentsInput {
+  product_id: String!
+}
+
+input RemoveAssemblyComponentsInput {
+  product_id: String!
+  skus: [String]!
+}
+
+input UpdateAssemblyComponentsInput {
+  product_id: String!
+  components: [AddAssemblyComponentsComponentInput]!
+}
+
+input BuildKitInput {
+  sku: String!
+  warehouse_id: String!
+  quantity: Int!
+  location_id: String
+}
+
+input ClearKitInput {
+  sku: String!
+  warehouse_id: String!
+}
+
+input RemoveKitComponentsInput {
+  sku: String!
+  component_skus: [String]!
+}
+
+input CreateLicensePlateNumbersInput {
+  warehouse_id: String!
+  quantity: Int!
+}
+
+input CreateWholesaleOrderInput {
+  warehouse_id: String!
+  order_number: String
+}
+
+input AutoAllocateWholesaleOrderInput {
+  wholesale_order_id: String!
+}
+
+input AddWorkOrderFeeInput {
+  work_order_id: String!
+  amount: Float!
+  description: String
+}
+
+input UpdateInboundShipmentInput {
+  inbound_shipment_id: String!
+  status: String
+  carrier: String
+  notes: String
+  estimated_truck_arrival: DateTime
+  number_carton: Int
+  pallets_quantity: Int
+}
