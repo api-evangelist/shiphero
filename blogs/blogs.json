@@ -22,5 +22,14 @@
       "url": "https://shiphero.com/blog/ai-in-warehouse-management",
       "date": "2025-09-09"
     }
-  ]
+  ],
+  "repo": "shiphero",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/company/shiphero",
+      "error": "HTTPError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
