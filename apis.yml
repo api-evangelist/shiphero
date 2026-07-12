@@ -60,6 +60,10 @@ apis:
   - url: graphql/shiphero-graphql.md
     type: GraphQL
 common:
+- type: TrustCenter
+  url: security/shiphero-trust-center.yml
+- type: DomainSecurity
+  url: security/shiphero-domain-security.yml
 - type: Website
   url: https://shiphero.com/
 - type: Documentation
