@@ -97,3 +97,35 @@ plans:
         type: boolean
         description: Paid add-on; bulk data export up to four times daily
         value: true
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - seat
+  plans:
+  - name: Brand
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
+  - name: 3PL
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
+  - name: Enterprise+
+    access: enterprise
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
