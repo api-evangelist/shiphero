@@ -15,3 +15,30 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: shiphero-sps-commerce
+  label: SPS Commerce
+  partner: sps-commerce
+  partner_name: SPS Commerce
+  category: Software Provider, Third Party Logistics (3PL)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.spscommerce.com/partner-community/directory/
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: SPS Commerce partner community directory
+    spec_file: null
+    role: sps-integration-partner
+    registered_name: ShipHero
+    website: https://.shiphero.com
+    matched_domain: shiphero.com
+    matched_by: domain
+    business_types:
+    - Software Provider
+    - Third Party Logistics (3PL)
+    signal_note: 'participation only: a directory listing, never a count'
+    detected_by: sweep-consumer-goods.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
