@@ -7,6 +7,7 @@ checked:
 - https://monid.ai/tools/shiphero
 - https://n8n.io/integrations/shiphero/
 - https://zapier.com/apps/shiphero/integrations
+- shopify/integrations/shopify-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: n8n
@@ -181,5 +182,24 @@ marketplace_apps:
   - zoom
   - zscaler-zia
   - zulip
-edges: []
+edges:
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/shiphero
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - ShipHero Inventory & Shipping
+  - LVK Logistics
+  listing_count: 2
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
 templates: []
