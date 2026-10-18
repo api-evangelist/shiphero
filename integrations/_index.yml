@@ -92,7 +92,7 @@
     - connectors/applications/shiphero
     vendor_link: https://shiphero.com/
     builder: Fivetran
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: shiphero-meltano
   label: Meltano
@@ -124,5 +124,5 @@
     - bronze
     - gold
     builder: 'community (Meltano Hub variant maintainers: definite, singer-io)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
