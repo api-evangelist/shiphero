@@ -16,6 +16,7 @@ checked:
 - https://www.spscommerce.com/partner-community/directory/
 - https://zapier.com/apps/shiphero/integrations
 - shopify/integrations/shopify-integration-edges.yml
+- bigcommerce/integrations/bigcommerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: n8n
@@ -29,25 +30,6 @@ marketplace_apps:
   - supabase
   - telegram
 edges:
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/shiphero
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - ShipHero Inventory & Shipping
-  - LVK Logistics
-  listing_count: 2
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  publisher_verified:
-  - Built for Shopify
 - partner_name: SPS Commerce
   partner: sps-commerce
   partner_match: domain
@@ -159,4 +141,40 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/shiphero
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - ShipHero Inventory & Shipping
+  - LVK Logistics
+  listing_count: 2
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
+- partner_name: BigCommerce (own)
+  partner: bigcommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bigcommerce.com/apps/shiphero/
+  mirror_of: bigcommerce/integrations/bigcommerce-integration-edges.yml
+  apps:
+  - ShipHero Warehouse Manager
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Shipping & Fulfillment, Fulfillment & Delivery
 templates: []
