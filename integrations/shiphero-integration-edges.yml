@@ -17,6 +17,9 @@ checked:
 - https://zapier.com/apps/shiphero/integrations
 - shopify/integrations/shopify-integration-edges.yml
 - bigcommerce/integrations/bigcommerce-integration-edges.yml
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps:
 - marketplace: n8n
@@ -177,4 +180,19 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Shipping & Fulfillment, Fulfillment & Delivery
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.19554304-501d-4275-bbd3-34af59ea84a6
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - ShipHero
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 templates: []
