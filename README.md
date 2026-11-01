@@ -1,4 +1,4 @@
-# ShipHero (shiphero)
+# ShipHero
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,64 +64,127 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ShipHero is a warehouse management system (WMS) and fulfillment platform designed for eCommerce brands and third-party logistics (3PL) providers. The platform exposes a GraphQL public API with 69 queries, 120 mutations, and 599 types covering inventory, orders, shipments, purchase orders, returns, assembly products, and warehouse operations. Authentication uses JWT bearer tokens with a credit-based rate limiting system and support for 18 webhook event types.
+ShipHero is a warehouse management system (WMS) and fulfillment platform designed for brands and third-party logistics (3PL) providers operating eCommerce direct-to-consumer fulfillment. The platform exposes a GraphQL public API with 69 queries, 120 mutations, and 599 types covering inventory, orders, shipments, purchase orders, returns, and warehouse operations. Authentication uses JWT bearer tokens obtained via username and password credentials, with access tokens valid for 28 days and refresh-token-based renewal. ShipHero enforces a credit-based rate limit system and supports 18 webhook event types for real-time integration with fulfillment workflows.
 
-APIs.json: [https://raw.githubusercontent.com/api-evangelist/shiphero/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shiphero/refs/heads/main/apis.yml)
+**Areas:** Warehouse Management · Fulfillment · E-Commerce · GraphQL · Inventory · Order · Shipments · 3PL · Logistics
 
-Naftiko: [https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=shiphero-api-evangelist&utm_content=repo](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=shiphero-api-evangelist&utm_content=repo)
+## ShipHero on APIs.io
 
-## Tags
+Everything profiled for ShipHero is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shiphero/](https://apis.io/providers/shiphero/)** — or go straight to one of the APIs or properties below.
 
-- Warehouse Management
-- Fulfillment
-- eCommerce
-- GraphQL
-- Inventory
-- Orders
-- Shipments
-- 3PL
-- Logistics
+### APIs (1)
 
-## APIs
+- [ShipHero GraphQL API](https://apis.io/apis/shiphero/graphql-api/) — ShipHero's primary public API built on GraphQL, providing programmatic access to warehouse management data and operations including inventory, orders,…
 
-### ShipHero GraphQL API
+### Published properties
 
-ShipHero's primary public API built on GraphQL, providing programmatic access to warehouse management data and operations including inventory, orders, shipments, purchase orders, returns, wholesale orders, assembly products, labor metrics, and billing.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Human URL:** https://developer.shiphero.com/
-- **Base URL:** https://public-api.shiphero.com/graphql
-- **Auth:** JWT Bearer Token (obtained via https://public-api.shiphero.com/auth/token)
-- **Schema Reference:** https://developer.shiphero.com/schema/
-- **Webhooks:** https://developer.shiphero.com/webhooks/
+#### GraphQL (1)
 
-## Plans / Rate Limits / FinOps
+GraphQL schemas.
 
-- **Plans & Pricing:** [plans/shiphero-plans-pricing.yml](plans/shiphero-plans-pricing.yml)
-- **Rate Limits:** [rate-limits/shiphero-rate-limits.yml](rate-limits/shiphero-rate-limits.yml)
-- **FinOps:** [finops/shiphero-finops.yml](finops/shiphero-finops.yml)
+- [ShipHero GraphQL API](https://apis.io/graphqls/shiphero/shiphero-graphql/)
 
-Pricing tiers: Brand ($1,850/mo), 3PL ($1,995/mo), Enterprise+ ($2,750/mo). No free tier. API access is included in all subscription plans.
+#### MCP servers (1)
 
-Rate limits: 4,004 credits per account (60 credits/second restore rate), 7,000 max requests per 5-minute window.
+Model Context Protocol servers that expose the API to agents.
 
-## Timestamps
+- [shiphero](https://apis.io/servers/shiphero/shiphero/)
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+#### JSON-LD (1)
 
-## Common Properties
+Linked-data contexts for the provider's vocabulary.
 
-| Type | URL |
-|------|-----|
-| Website | https://shiphero.com/ |
-| Documentation | https://developer.shiphero.com/ |
-| Getting Started | https://developer.shiphero.com/getting-started/ |
-| GitHub Organization | https://github.com/Shiphero |
-| LinkedIn | https://www.linkedin.com/company/shiphero |
-| Blog | https://shiphero.com/blog |
-| X (Twitter) | https://x.com/weareshiphero |
-| Status Page | https://status.shiphero.com/ |
+- [Shiphero Context](https://apis.io/jsonld/shiphero/shiphero-context/)
 
-## Maintainers
+#### Security (2)
 
-- **Kin Lane** — kin@apievangelist.com
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Shiphero Domain Security](https://apis.io/security/shiphero/shiphero-domain-security/)
+- [Shiphero Trust Center](https://apis.io/security/shiphero/shiphero-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Shiphero Plans Pricing](https://apis.io/plans/shiphero/shiphero-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Shiphero Rate Limits](https://apis.io/rate-limits/shiphero/shiphero-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Shiphero Finops](https://apis.io/finops/shiphero/shiphero-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://shiphero.com/)
+- [Documentation](https://developer.shiphero.com/)
+- [Getting started](https://developer.shiphero.com/getting-started/)
+- [Blog](https://shiphero.com/blog)
+- [GitHub](https://github.com/Shiphero)
+- [Status](https://status.shiphero.com/)
+
+## API Evangelist rating
+
+**Kin Score 30.7** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 45.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 15.8 |
+
+**Agent readiness 29.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 15.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shiphero/](https://apis.io/providers/shiphero/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ShipHero: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shiphero/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
